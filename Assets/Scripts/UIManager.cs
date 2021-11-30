@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public Canvas gameplayUI;
     public Canvas winScreen;
     public Canvas loseScreen;
+    public Canvas optionsMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class UIManager : MonoBehaviour
         gameplayUI.enabled = false;
         winScreen.enabled = false;
         loseScreen.enabled = false;
+        optionsMenu.enabled = false;
     }
 
     public void ShowPauseMenu()
@@ -38,6 +40,7 @@ public class UIManager : MonoBehaviour
         gameplayUI.enabled = false;
         winScreen.enabled = false;
         loseScreen.enabled = false;
+        optionsMenu.enabled = false;
     }
 
     public void ShowGameplayUI()
@@ -47,6 +50,7 @@ public class UIManager : MonoBehaviour
         gameplayUI.enabled = true;
         winScreen.enabled = false;
         loseScreen.enabled = false;
+        optionsMenu.enabled = false;
     }
 
     public void ShowWinScreen()
@@ -56,6 +60,7 @@ public class UIManager : MonoBehaviour
         gameplayUI.enabled = false;
         winScreen.enabled = true;
         loseScreen.enabled = false;
+        optionsMenu.enabled = false;
     }
 
     public void ShowLoseScreen()
@@ -65,5 +70,16 @@ public class UIManager : MonoBehaviour
         gameplayUI.enabled = false;
         winScreen.enabled = false;
         loseScreen.enabled = true;
+        optionsMenu.enabled = false;
+    }
+
+    public void ShowOptionsMenu()
+    {
+        mainMenu.enabled = false;
+        pauseMenu.enabled = false;
+        gameplayUI.enabled = false;
+        winScreen.enabled = false;
+        loseScreen.enabled = false;
+        optionsMenu.enabled = true;
     }
 }

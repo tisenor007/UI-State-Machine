@@ -22,20 +22,34 @@ public class ButtonManager : MonoBehaviour
     {
         gameManagerScript.gameState = GameManager.GameState.MainMenu;
     }
+
     public void GoToGamePlay()
     {
         gameManagerScript.gameState = GameManager.GameState.GamePlay;
     }
+
     public void PauseGame()
     {
         gameManagerScript.gameState = GameManager.GameState.Paused;
     }
+
     public void GoToWinScreen()
     {
         gameManagerScript.gameState = GameManager.GameState.Win;
     }
+
     public void GoToLoseScreen()
     {
         gameManagerScript.gameState = GameManager.GameState.Lose;
+    }
+
+    public void GoToOptionsMenu()
+    {
+        gameManagerScript.gameState = GameManager.GameState.OptionsMenu;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

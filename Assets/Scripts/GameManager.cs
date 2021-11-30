@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         MainMenu,
+        OptionsMenu,
         GamePlay,
         Paused,
         Win,
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public GameState gameState;
     public static GameManager gameManager;
+    public AudioSource music;
     public GameObject UIManager;
     public GameObject buttonManager;
     private UIManager UIManagerScript;
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UIManagerScript = UIManager.GetComponent<UIManager>();
+        gameState = GameState.MainMenu;
     }
 
     // Update is called once per frame
@@ -50,10 +53,15 @@ public class GameManager : MonoBehaviour
     {
         currentScene = SceneManager.GetActiveScene();
         sceneName = currentScene.name;
+        AudioListener.volume = PlayerPrefs.GetFloat("volume");
 
-        if (gameState != GameState.Paused && gameState != GameState.Win && gameState != GameState.Lose)
+        if (gameState != GameState.Paused && gameState != GameState.Win && gameState != GameState.Lose && gameState != GameState.OptionsMenu)
         {
             Time.timeScale = 1;
+        }
+        if (music.isPlaying == false)
+        {
+            music.Play(0);
         }
 
         switch (gameState)
@@ -65,7 +73,7 @@ public class GameManager : MonoBehaviour
             case GameState.GamePlay:
                 if (sceneName != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
                 UIManagerScript.ShowGameplayUI();
-                CheckToPause();
+                CheckInput();
                 break;
             case GameState.Paused:
                 if (sceneName != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
@@ -82,14 +90,32 @@ public class GameManager : MonoBehaviour
                 UIManagerScript.ShowLoseScreen();
                 Time.timeScale = 0;
                 break;
+            case GameState.OptionsMenu:
+                if (sceneName != "Title") { SceneManager.LoadScene("Title", LoadSceneMode.Single); }
+                UIManagerScript.ShowOptionsMenu();
+                Time.timeScale = 0;
+                break;
         }
     }
 
-    public void CheckToPause()
+    public void AdjustVolume(float value)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        PlayerPrefs.SetFloat("volume", value);
+    }
+
+    public void CheckInput()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
         {
             gameState = GameState.Paused;
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            gameState = GameState.Win;
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
+        {
+            gameState = GameState.Lose;
         }
     }
    
