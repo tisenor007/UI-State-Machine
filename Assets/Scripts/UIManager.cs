@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public Canvas winScreen;
     public Canvas loseScreen;
     public Canvas optionsMenu;
+    public Canvas inventoryUI;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
         winScreen.enabled = false;
         loseScreen.enabled = false;
         optionsMenu.enabled = false;
+        inventoryUI.enabled = false;
     }
 
     public void ShowPauseMenu()
@@ -41,6 +43,7 @@ public class UIManager : MonoBehaviour
         winScreen.enabled = false;
         loseScreen.enabled = false;
         optionsMenu.enabled = false;
+        inventoryUI.enabled = false;
     }
 
     public void ShowGameplayUI()
@@ -51,6 +54,7 @@ public class UIManager : MonoBehaviour
         winScreen.enabled = false;
         loseScreen.enabled = false;
         optionsMenu.enabled = false;
+        inventoryUI.enabled = false;
     }
 
     public void ShowWinScreen()
@@ -61,6 +65,7 @@ public class UIManager : MonoBehaviour
         winScreen.enabled = true;
         loseScreen.enabled = false;
         optionsMenu.enabled = false;
+        inventoryUI.enabled = false;
     }
 
     public void ShowLoseScreen()
@@ -71,6 +76,7 @@ public class UIManager : MonoBehaviour
         winScreen.enabled = false;
         loseScreen.enabled = true;
         optionsMenu.enabled = false;
+        inventoryUI.enabled = false;
     }
 
     public void ShowOptionsMenu()
@@ -81,5 +87,17 @@ public class UIManager : MonoBehaviour
         winScreen.enabled = false;
         loseScreen.enabled = false;
         optionsMenu.enabled = true;
+        inventoryUI.enabled = false;
+    }
+
+    public void ShowInventory()
+    {
+        mainMenu.enabled = false;
+        pauseMenu.enabled = false;
+        gameplayUI.enabled = false;
+        winScreen.enabled = false;
+        loseScreen.enabled = false;
+        optionsMenu.enabled = false;
+        inventoryUI.enabled = true;
     }
 }

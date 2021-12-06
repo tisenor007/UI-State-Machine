@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
         OptionsMenu,
         GamePlay,
         Paused,
+        Inventory,
         Win,
         Lose
     }
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
         sceneName = currentScene.name;
         AudioListener.volume = PlayerPrefs.GetFloat("volume");
 
-        if (gameState != GameState.Paused && gameState != GameState.Win && gameState != GameState.Lose && gameState != GameState.OptionsMenu)
+        if (gameState != GameState.Paused && gameState != GameState.Win && gameState != GameState.Lose && gameState != GameState.OptionsMenu && gameState != GameState.Inventory)
         {
             Time.timeScale = 1;
         }
@@ -81,18 +82,23 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
                 break;
             case GameState.Win:
-                if (sceneName != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
+                if (sceneName != "GameOver") { SceneManager.LoadScene("GameOver", LoadSceneMode.Single); }
                 UIManagerScript.ShowWinScreen();
                 Time.timeScale = 0;
                 break;
             case GameState.Lose:
-                if (sceneName != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
+                if (sceneName != "GameOver") { SceneManager.LoadScene("GameOver", LoadSceneMode.Single); }
                 UIManagerScript.ShowLoseScreen();
                 Time.timeScale = 0;
                 break;
             case GameState.OptionsMenu:
                 if (sceneName != "Title") { SceneManager.LoadScene("Title", LoadSceneMode.Single); }
                 UIManagerScript.ShowOptionsMenu();
+                Time.timeScale = 0;
+                break;
+            case GameState.Inventory:
+                if (sceneName != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
+                UIManagerScript.ShowInventory();
                 Time.timeScale = 0;
                 break;
         }
@@ -116,6 +122,10 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.L))
         {
             gameState = GameState.Lose;
+        }
+        else if (Input.GetKeyDown(KeyCode.I))
+        {
+            gameState = GameState.Inventory;
         }
     }
    

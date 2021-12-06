@@ -48,6 +48,11 @@ public class ButtonManager : MonoBehaviour
         gameManagerScript.gameState = GameManager.GameState.OptionsMenu;
     }
 
+    public void ShowInventory()
+    {
+        gameManagerScript.gameState = GameManager.GameState.Inventory;
+    }
+
     public void QuitGame()
     {
         Application.Quit();
