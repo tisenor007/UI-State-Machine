@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Canvas loseScreen;
     public Canvas optionsMenu;
     public Canvas inventoryUI;
+    public Canvas creditsUI;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowMainMenu()
     {
+        creditsUI.enabled = false;
         mainMenu.enabled = true;
         pauseMenu.enabled = false;
         gameplayUI.enabled = false;
@@ -37,6 +39,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowPauseMenu()
     {
+        creditsUI.enabled = false;
         mainMenu.enabled = false;
         pauseMenu.enabled = true;
         gameplayUI.enabled = false;
@@ -48,6 +51,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowGameplayUI()
     {
+        creditsUI.enabled = false;
         mainMenu.enabled = false;
         pauseMenu.enabled = false;
         gameplayUI.enabled = true;
@@ -59,6 +63,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowWinScreen()
     {
+        creditsUI.enabled = false;
         mainMenu.enabled = false;
         pauseMenu.enabled = false;
         gameplayUI.enabled = false;
@@ -70,6 +75,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowLoseScreen()
     {
+        creditsUI.enabled = false;
         mainMenu.enabled = false;
         pauseMenu.enabled = false;
         gameplayUI.enabled = false;
@@ -81,6 +87,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowOptionsMenu()
     {
+        creditsUI.enabled = false;
         mainMenu.enabled = false;
         pauseMenu.enabled = false;
         gameplayUI.enabled = false;
@@ -92,6 +99,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowInventory()
     {
+        creditsUI.enabled = false;
         mainMenu.enabled = false;
         pauseMenu.enabled = false;
         gameplayUI.enabled = false;
@@ -99,5 +107,17 @@ public class UIManager : MonoBehaviour
         loseScreen.enabled = false;
         optionsMenu.enabled = false;
         inventoryUI.enabled = true;
+    }
+
+    public void ShowCreditsScreen()
+    {
+        creditsUI.enabled = true;
+        mainMenu.enabled = false;
+        pauseMenu.enabled = false;
+        gameplayUI.enabled = false;
+        winScreen.enabled = false;
+        loseScreen.enabled = false;
+        optionsMenu.enabled = false;
+        inventoryUI.enabled = false;
     }
 }

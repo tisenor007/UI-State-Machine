@@ -53,6 +53,11 @@ public class ButtonManager : MonoBehaviour
         gameManagerScript.gameState = GameManager.GameState.Inventory;
     }
 
+    public void ShowCredits()
+    {
+        gameManagerScript.gameState = GameManager.GameState.Credits;
+    }
+
     public void QuitGame()
     {
         Application.Quit();

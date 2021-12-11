@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         Paused,
         Inventory,
         Win,
+        Credits,
         Lose
     }
     [HideInInspector]
@@ -23,8 +24,6 @@ public class GameManager : MonoBehaviour
     public GameObject UIManager;
     public GameObject buttonManager;
     private UIManager UIManagerScript;
-    private Scene currentScene;
-    private string sceneName;
 
     void Awake()
     {
@@ -52,8 +51,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentScene = SceneManager.GetActiveScene();
-        sceneName = currentScene.name;
         AudioListener.volume = PlayerPrefs.GetFloat("volume");
 
         if (gameState != GameState.Paused && gameState != GameState.Win && gameState != GameState.Lose && gameState != GameState.OptionsMenu && gameState != GameState.Inventory)
@@ -68,37 +65,42 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.MainMenu:
-                if (sceneName != "Title") { SceneManager.LoadScene("Title", LoadSceneMode.Single); }
+                if (SceneManager.GetActiveScene().name != "Title") { SceneManager.LoadScene("Title", LoadSceneMode.Single); }
                 UIManagerScript.ShowMainMenu();
                 break;
             case GameState.GamePlay:
-                if (sceneName != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
+                if (SceneManager.GetActiveScene().name != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
                 UIManagerScript.ShowGameplayUI();
                 CheckInput();
                 break;
             case GameState.Paused:
-                if (sceneName != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
+                if (SceneManager.GetActiveScene().name != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
                 UIManagerScript.ShowPauseMenu();
                 Time.timeScale = 0;
                 break;
             case GameState.Win:
-                if (sceneName != "GameOver") { SceneManager.LoadScene("GameOver", LoadSceneMode.Single); }
+                if (SceneManager.GetActiveScene().name != "GameOver") { SceneManager.LoadScene("GameOver", LoadSceneMode.Single); }
                 UIManagerScript.ShowWinScreen();
                 Time.timeScale = 0;
                 break;
             case GameState.Lose:
-                if (sceneName != "GameOver") { SceneManager.LoadScene("GameOver", LoadSceneMode.Single); }
+                if (SceneManager.GetActiveScene().name != "GameOver") { SceneManager.LoadScene("GameOver", LoadSceneMode.Single); }
                 UIManagerScript.ShowLoseScreen();
                 Time.timeScale = 0;
                 break;
             case GameState.OptionsMenu:
-                if (sceneName != "Title") { SceneManager.LoadScene("Title", LoadSceneMode.Single); }
+                if (SceneManager.GetActiveScene().name != "Title") { SceneManager.LoadScene("Title", LoadSceneMode.Single); }
                 UIManagerScript.ShowOptionsMenu();
                 Time.timeScale = 0;
                 break;
             case GameState.Inventory:
-                if (sceneName != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
+                if (SceneManager.GetActiveScene().name != "GamePlay") { SceneManager.LoadScene("GamePlay", LoadSceneMode.Single); }
                 UIManagerScript.ShowInventory();
+                Time.timeScale = 0;
+                break;
+            case GameState.Credits:
+                if (SceneManager.GetActiveScene().name != "Title") { SceneManager.LoadScene("Title", LoadSceneMode.Single); }
+                UIManagerScript.ShowCreditsScreen();
                 Time.timeScale = 0;
                 break;
         }
